@@ -1,0 +1,10 @@
+.next
+public
+node_modules
+yarn.lock
+package-lock.json
+**/*.test.js
+**/*.d.ts
+coverage
+.eslintrc.js
+vite.config.ts

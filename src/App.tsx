@@ -1,12 +1,13 @@
-import './App.css';
 import React, { useState } from 'react';
 import reactLogo from './assets/react.svg';
+
+import style from './style.module.css';
 
 const App: React.FC = () => {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="App">
+    <div className={style.container}>
       <div>
         <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
           <img src="/vite.svg" className="logo" alt="Vite logo" />

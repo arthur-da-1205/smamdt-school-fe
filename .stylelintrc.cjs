@@ -1,7 +1,7 @@
 module.exports = {
   extends: ['stylelint-config-recommended'],
   // customSyntax: require('postcss-less'),
-  plugins: ['stylelint-order'],
+  plugins: ['stylelint-less', 'stylelint-order'],
   rules: {
     'at-rule-no-vendor-prefix': true,
     'color-hex-length': 'short',
@@ -24,8 +24,8 @@ module.exports = {
     'value-no-vendor-prefix': true,
     'at-rule-no-unknown': null,
 
-    // 'less/color-no-invalid-hex': true,
-    // 'less/no-duplicate-variables': true,
+    'less/color-no-invalid-hex': true,
+    'less/no-duplicate-variables': true,
 
     'order/order': ['custom-properties', 'declarations', 'rules', 'at-rules'],
     'order/properties-alphabetical-order': true,

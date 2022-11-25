@@ -8,3 +8,4 @@ package-lock.json
 coverage
 .eslintrc.js
 vite.config.ts
+lint-staged.config.js

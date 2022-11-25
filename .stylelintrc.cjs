@@ -1,6 +1,6 @@
 module.exports = {
   extends: ['stylelint-config-recommended'],
-  // customSyntax: require('postcss-less'),
+  customSyntax: require('postcss-less'),
   plugins: ['stylelint-less', 'stylelint-order'],
   rules: {
     'at-rule-no-vendor-prefix': true,

@@ -18,12 +18,19 @@
   },
   "dependencies": {
     "antd": "4.24.4",
+    "axios": "^1.2.0",
+    "axios-hooks": "^4.0.0",
+    "crypto-js": "^4.1.1",
+    "lodash-es": "^4.17.21",
+    "lru-cache": "^7.14.1",
     "prettier": "^2.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.4.3"
   },
   "devDependencies": {
+    "@types/crypto-js": "^4.1.1",
+    "@types/lodash-es": "^4.17.6",
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",

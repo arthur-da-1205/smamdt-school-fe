@@ -22,6 +22,83 @@ html {
   width: 100%;
 }
 
+// ANT LAYOUT
+
+.ant-layout {
+  background: @grey-border-color;
+  display: flex;
+  flex: auto;
+  flex-direction: column;
+  min-height: 0;
+
+  .ant-layout-sider {
+    flex: 0 0 256px;
+    max-width: 256px;
+    min-width: 256px;
+    width: 256px;
+
+    .ant-layout-sider-children {
+      background: @white-color;
+
+    }
+  }
+}
+
+// ANT HEADER
+
+.ant-layout-header {
+  &.smamdt-header {
+    align-items: center;
+    background-color: @white-color;
+    box-shadow: 4px 4px 40px 0 rgba(0,0,0,.05);
+    display: flex;
+    height: 72px;
+    justify-content: space-between;
+    padding: 0;
+    position: relative;
+    z-index: 9;
+
+    > span {
+      margin-left: 20px;
+
+      > svg {
+        height: 20px;
+        width: 20px;
+      }
+    }
+  }
+}
+
+// ANT MENU 
+
+.ant-menu {
+  &.dashboard-menu {
+    border-right: none;
+
+    .ant-comment-content-author-name {
+      width: 100%;
+    }
+
+    .ant-menu-item, .ant-menu-submenu-title {
+      border-radius: 5px;
+    }
+
+    .ant-menu-sub {
+      .ant-menu-item {
+        padding-left: 56px !important;
+      }
+
+      &.ant-menu-inline {
+        background-color: transparent !important;
+      }
+    }
+
+    .ant-menu-title-content {
+      font-weight: 600 !important;
+    }
+  }
+}
+
 // ANT INPUT
 
 .ant-input {

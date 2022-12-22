@@ -16,7 +16,7 @@ const LoginPage: React.FC = () => {
 
   useEffect(() => {
     if (error) {
-      message.error(error.message);
+      message.error('Username atau Password Salah!');
     }
 
     if (data) {

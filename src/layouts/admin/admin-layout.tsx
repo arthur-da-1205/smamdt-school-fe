@@ -1,5 +1,6 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined, UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
-import { Layout, Menu } from 'antd';
+import { useApp } from '@provider/app.provider';
+import { Avatar, Dropdown, Layout, Menu } from 'antd';
 import React, { useState } from 'react';
 
 const { Header, Sider, Content } = Layout;
@@ -9,15 +10,28 @@ interface IProps {
 }
 
 const AdminLayout: React.FC<IProps> = ({ component }) => {
+  const { setLogout } = useApp();
+
   const [collapsed, setCollapsed] = useState(false);
+
+  const overlay = () => {
+    return (
+      <div className="cursor-pointer" onClick={() => setLogout()}>
+        <span>Logout</span>
+      </div>
+    );
+  };
 
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="logo" />
+        <div>
+          <span>SMAMDT</span>
+        </div>
         <Menu
-          theme="dark"
+          theme="light"
           mode="inline"
+          className="dashboard-menu"
           defaultSelectedKeys={['1']}
           items={[
             {
@@ -38,15 +52,17 @@ const AdminLayout: React.FC<IProps> = ({ component }) => {
           ]}
         />
       </Sider>
-      <Layout className="site-layout">
-        <Header className="site-layout-background" style={{ padding: 0 }}>
+      <Layout>
+        <Header className="smamdt-header" style={{ padding: 14 }}>
           {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
             className: 'trigger',
             onClick: () => setCollapsed(!collapsed),
           })}
+          <Dropdown overlay={overlay} trigger={['click']} className="cursor-pointer">
+            <Avatar />
+          </Dropdown>
         </Header>
         <Content
-          className="site-layout-background"
           style={{
             margin: '24px 16px',
             padding: 24,

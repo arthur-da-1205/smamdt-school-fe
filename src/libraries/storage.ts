@@ -1,8 +1,8 @@
 import { Encryptor } from '@libraries/encryptor';
 import { forIn, startsWith } from 'lodash-es';
 
-const APP_PREFIX = 'lini_app_';
-const encryptor = new Encryptor('liniapp2022');
+const APP_PREFIX = 'smamdt_';
+const encryptor = new Encryptor('smamdt2022');
 
 export class LocalStorage {
   static getLength() {

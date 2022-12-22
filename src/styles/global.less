@@ -1,4 +1,10 @@
 @import 'antd';
+
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "./var.less";
+
 // USE LESS FIRST, TAILWIND JUST FOR H
 
 body,
@@ -9,8 +15,64 @@ html {
 }
 
 #root {
+  background-color: @muted-color;
   display: flex;
   flex: 1 1 auto;
   height: 100%;
   width: 100%;
+}
+
+// ANT INPUT
+
+.ant-input {
+  border-radius: 8px;
+  font-family: Lato, sans-serif;
+  font-weight: 400;
+  padding: 8px 10px;
+  width: 100%;
+}
+
+.ant-input-affix-wrapper {
+  border-radius: 8px;
+  font-family: Lato, sans-serif;
+  font-weight: 400;
+  padding: 8px 10px;
+  width: 100%;
+}
+
+// ANT Form
+
+.ant-form-item {
+  margin-bottom: 0;
+  padding-bottom: 16px;
+}
+
+// ANT BUTTON 
+
+.btn-submit {
+  align-items: center;
+  border-radius: 8px;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  width: 100%;
+
+  > span {
+    color: @white-color;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
+.btn-primary {
+  background-color: @primary-color;
+  border-color: @primary-color;
+  color: @white-color;
+  display: flex;
+  justify-content: center;
+
+  &:hover,
+  &:focus {
+    border-color: @primary-color-hover;
+  }
 }

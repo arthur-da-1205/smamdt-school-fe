@@ -1,6 +1,7 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { useApp } from '@provider/app.provider';
-import { useLogin } from '@resources/api/auth';
+import { useLogin } from '@resources/api/auth.rest';
+import { LoginInput } from '@resources/input/auth.input';
 import { Button, Form, Input, message } from 'antd';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -28,7 +29,7 @@ const LoginPage: React.FC = () => {
     }
   }, [error, data]);
 
-  const onFinish = (values: any) => {
+  const onFinish = (values: LoginInput) => {
     authLogin({ data: { username: values.username, password: values.password } });
   };
 

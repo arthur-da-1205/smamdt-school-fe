@@ -1,4 +1,5 @@
 import { ProtectedRoute } from '@guards/auth.guard';
+import AdminLayout from '@layouts/admin/admin-layout';
 import AboutPage from '@pages/about';
 import AdminPage from '@pages/admin';
 import LoginPage from '@pages/login';
@@ -10,7 +11,7 @@ export default [
     path: '/',
     element: (
       <ProtectedRoute>
-        <AdminPage />
+        <AdminLayout component={<AdminPage />} />
       </ProtectedRoute>
     ),
   },

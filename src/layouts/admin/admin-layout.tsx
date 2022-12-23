@@ -11,6 +11,8 @@ import { Avatar, Dropdown, Layout, Menu, MenuProps } from 'antd';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import style from './admin-layout.module.less';
+
 const { Header, Sider, Content } = Layout;
 
 interface IProps {
@@ -52,9 +54,7 @@ const AdminLayout: React.FC<IProps> = ({ component }) => {
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div>
-          <span>SMAMDT</span>
-        </div>
+        <div className={style.logo}>{collapsed ? <span>S</span> : <span>SMAMDT</span>}</div>
         <Menu
           theme="light"
           mode="inline"
@@ -86,7 +86,7 @@ const AdminLayout: React.FC<IProps> = ({ component }) => {
             className: 'trigger',
             onClick: () => setCollapsed(!collapsed),
           })}
-          <Dropdown dropdownRender={overlay} trigger={['click']} className="cursor-pointer">
+          <Dropdown dropdownRender={overlay} trigger={['click']} className="cursor-pointer mt-1" arrow>
             <Avatar />
           </Dropdown>
         </Header>

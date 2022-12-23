@@ -12,14 +12,10 @@ const LoginPage: React.FC = () => {
   const navigate = useNavigate();
   const { setToken, setUser } = useApp();
 
-  const [authLogin, { data, loading, error }] = useLogin();
+  const [authLogin, { data, loading: authLoading, error: authError }] = useLogin();
   const [form] = Form.useForm();
 
   useEffect(() => {
-    if (error) {
-      message.error('Username atau Password Salah!');
-    }
-
     if (data) {
       setUser(data?.data?.role);
       setToken(data?.data?.tokenData?.token);
@@ -27,7 +23,13 @@ const LoginPage: React.FC = () => {
 
       navigate('/');
     }
-  }, [error, data]);
+
+    if (authError) {
+      const arKey = Object.values(authError.response?.data.errors);
+
+      message.error(arKey[0] as any);
+    }
+  }, [authError, authLoading]);
 
   const onFinish = (values: LoginInput) => {
     authLogin({ data: { username: values.username, password: values.password } });
@@ -56,7 +58,7 @@ const LoginPage: React.FC = () => {
         </Form.Item>
 
         <div className="mt-3">
-          <Button type="primary" className="btn-submit" htmlType="submit" disabled={loading}>
+          <Button type="primary" className="btn-submit" htmlType="submit" disabled={authLoading}>
             Masuk
           </Button>
         </div>

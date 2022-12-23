@@ -1,7 +1,15 @@
-import { MenuFoldOutlined, MenuUnfoldOutlined, UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
+import {
+  AuditOutlined,
+  DashboardOutlined,
+  LogoutOutlined,
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  UserAddOutlined,
+} from '@ant-design/icons';
 import { useApp } from '@provider/app.provider';
-import { Avatar, Dropdown, Layout, Menu } from 'antd';
+import { Avatar, Dropdown, Layout, Menu, MenuProps } from 'antd';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
 
@@ -10,16 +18,35 @@ interface IProps {
 }
 
 const AdminLayout: React.FC<IProps> = ({ component }) => {
+  const navigate = useNavigate();
+
   const { setLogout } = useApp();
 
+  const [current, setCurrent] = useState(['']);
   const [collapsed, setCollapsed] = useState(false);
+
+  const menu = [
+    {
+      label: <span>Keluar</span>,
+      key: 'logout',
+      icon: <LogoutOutlined />,
+      onClick: () => {
+        setLogout();
+      },
+    },
+  ];
 
   const overlay = () => {
     return (
-      <div className="cursor-pointer" onClick={() => setLogout()}>
-        <span>Logout</span>
+      <div className="cursor-pointer">
+        <Menu items={menu} />
       </div>
     );
+  };
+
+  const onClick: MenuProps['onClick'] = (e) => {
+    setCurrent([e.key]);
+    navigate(`/${e.key}`);
   };
 
   return (
@@ -31,23 +58,24 @@ const AdminLayout: React.FC<IProps> = ({ component }) => {
         <Menu
           theme="light"
           mode="inline"
+          onClick={onClick}
           className="dashboard-menu"
-          defaultSelectedKeys={['1']}
+          selectedKeys={current}
           items={[
             {
-              key: '1',
-              icon: <UserOutlined />,
-              label: 'nav 1',
+              key: '/',
+              icon: <DashboardOutlined />,
+              label: 'Dashboard',
             },
             {
-              key: '2',
-              icon: <VideoCameraOutlined />,
-              label: 'nav 2',
+              key: 'admin',
+              icon: <AuditOutlined />,
+              label: 'Admin',
             },
             {
-              key: '3',
-              icon: <UploadOutlined />,
-              label: 'nav 3',
+              key: 'student',
+              icon: <UserAddOutlined />,
+              label: 'Student',
             },
           ]}
         />
@@ -58,7 +86,7 @@ const AdminLayout: React.FC<IProps> = ({ component }) => {
             className: 'trigger',
             onClick: () => setCollapsed(!collapsed),
           })}
-          <Dropdown overlay={overlay} trigger={['click']} className="cursor-pointer">
+          <Dropdown dropdownRender={overlay} trigger={['click']} className="cursor-pointer">
             <Avatar />
           </Dropdown>
         </Header>

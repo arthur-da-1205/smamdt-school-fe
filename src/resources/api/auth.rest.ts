@@ -1,12 +1,10 @@
 import { useApi } from '@hooks/useApi';
+import { AuthModel } from '@resources/models/auth.model';
 
 export function useLogin() {
   const [res, execute] = useApi<{
     message: string;
-    data: {
-      tokenData: { expiresIn: number; token: string };
-      role: string;
-    };
+    data: AuthModel;
   }>(
     {
       url: '/auth/login',

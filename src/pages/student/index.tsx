@@ -77,7 +77,7 @@ const StudentPage: React.FC = () => {
           Tambah Data Siswa
         </Button>
       </div>
-      <Table columns={columns} dataSource={studentList} pagination={{ pageSize: 50 }} scroll={{ y: 240, x: 180 }} />
+      <Table className="rounded-xl" columns={columns} dataSource={studentList} pagination={{ pageSize: 1 }} />
     </div>
   );
 };

@@ -70,14 +70,17 @@ const StudentPage: React.FC = () => {
     });
   }, []);
 
+  // eslint-disable-next-line no-console, no-restricted-globals
+  console.log(screen.height);
+
   return (
     <div>
-      <div className="w-[210px] mb-6">
+      <div className="w-[210px] mb-4">
         <Button type="primary" className="btn-submit" icon={<PlusCircleOutlined />}>
           Tambah Data Siswa
         </Button>
       </div>
-      <Table columns={columns} dataSource={studentList} pagination={{ pageSize: 50 }} scroll={{ y: 240, x: 180 }} />
+      <Table columns={columns} dataSource={studentList} pagination={{ pageSize: 10 }} scroll={{ y: '60vh', x: 180 }} />
     </div>
   );
 };

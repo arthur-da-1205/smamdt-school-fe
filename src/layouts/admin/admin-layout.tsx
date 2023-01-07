@@ -75,7 +75,12 @@ const AdminLayout: React.FC<IProps> = ({ component }) => {
             {
               key: 'student',
               icon: <UserAddOutlined />,
-              label: 'Student',
+              label: 'Siswa',
+            },
+            {
+              key: 'teacher',
+              icon: <UserAddOutlined />,
+              label: 'Guru',
             },
           ]}
         />
@@ -90,15 +95,7 @@ const AdminLayout: React.FC<IProps> = ({ component }) => {
             <Avatar />
           </Dropdown>
         </Header>
-        <Content
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: 280,
-          }}
-        >
-          {component}
-        </Content>
+        <Content style={{ margin: '24px 24px' }}>{component}</Content>
       </Layout>
     </Layout>
   );

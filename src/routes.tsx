@@ -6,6 +6,7 @@ import Dashboard from '@pages/dashboard/indes';
 import LoginPage from '@pages/login';
 import NotFound from '@pages/not-found';
 import StudentPage from '@pages/student';
+import TeacherPage from '@pages/teacher';
 import { RouteObject } from 'react-router-dom';
 
 export default [
@@ -30,6 +31,14 @@ export default [
     element: (
       <ProtectedRoute>
         <AdminLayout component={<StudentPage />} />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '/teacher',
+    element: (
+      <ProtectedRoute>
+        <AdminLayout component={<TeacherPage />} />
       </ProtectedRoute>
     ),
   },

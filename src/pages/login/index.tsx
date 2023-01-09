@@ -21,7 +21,7 @@ const LoginPage: React.FC = () => {
       setToken(data?.data?.tokenData?.token);
       message.success(data?.message);
 
-      navigate('/');
+      navigate('/', { replace: true });
     }
 
     if (authError) {

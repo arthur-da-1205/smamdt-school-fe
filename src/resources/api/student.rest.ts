@@ -15,3 +15,31 @@ export function useGetStudentList() {
 
   return [execute, res] as const;
 }
+
+export function usePostStudent() {
+  const [res, execute] = useApi<{ message: string; result: any }>(
+    {
+      url: '/students/create',
+      method: 'POST',
+    },
+    {
+      manual: true,
+    }
+  );
+
+  return [execute, res] as const;
+}
+
+export function useDeleteStudent() {
+  const [res, execute] = useApi<{ message: string; result: any }>(
+    {
+      url: '/students/delete',
+      method: 'DELETE',
+    },
+    {
+      manual: true,
+    }
+  );
+
+  return [execute, res] as const;
+}

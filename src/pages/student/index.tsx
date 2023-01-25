@@ -1,15 +1,19 @@
-import { PlusCircleOutlined } from '@ant-design/icons';
+import { DeleteFilled, EditFilled, EyeFilled, PlusCircleOutlined } from '@ant-design/icons';
 import { time } from '@libraries/time';
-import { useGetStudentList } from '@resources/api/student.rest';
+import { useDeleteStudent, useGetStudentList } from '@resources/api/student.rest';
 import { StudentModel } from '@resources/models/student.model';
-import { Button } from 'antd';
+import { Button, Modal, Space, Tooltip } from 'antd';
 import Table from 'antd/lib/table';
 import React, { useEffect, useState } from 'react';
+import StudentForm from './form';
 
 const StudentPage: React.FC = () => {
   const [getAllStudents] = useGetStudentList();
+  const [deleteStudent] = useDeleteStudent();
 
   const [studentList, setStudentList] = useState<StudentModel[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [hasUpdated, setHasUpdated] = useState<boolean>(false);
 
   const formatDate = 'DD-MM-YYYY';
 
@@ -49,6 +53,26 @@ const StudentPage: React.FC = () => {
       dataIndex: 'status',
       key: 'status',
     },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (_: any, record: any) => (
+        <Space size="middle">
+          <Tooltip title="Detail">
+            <EyeFilled style={{ fontSize: '18px', color: '#16c79a' }} />
+          </Tooltip>
+          <Tooltip title="Ubah">
+            <EditFilled style={{ fontSize: '18px', color: '#008891' }} />
+          </Tooltip>
+          <Tooltip title="Hapus">
+            <DeleteFilled
+              onClick={() => deleteStudent({ params: { id: record.id } })}
+              style={{ fontSize: '18px', color: '#ef4f4f' }}
+            />
+          </Tooltip>
+        </Space>
+      ),
+    },
   ];
 
   useEffect(() => {
@@ -68,16 +92,32 @@ const StudentPage: React.FC = () => {
         )
       );
     });
-  }, []);
+  }, [hasUpdated]);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const onCancelModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div>
       <div className="w-[210px] mb-6">
-        <Button type="primary" className="btn-submit" icon={<PlusCircleOutlined />}>
+        <Button type="primary" htmlType="submit" className="btn-submit" onClick={showModal} icon={<PlusCircleOutlined />}>
           Tambah Data Siswa
         </Button>
       </div>
-      <Table className="rounded-xl" columns={columns} dataSource={studentList} pagination={{ pageSize: 1 }} />
+      <Table className="rounded-xl" columns={columns} dataSource={studentList} pagination={{ pageSize: 20 }} />
+      <Modal title="Tambah Siswa" open={isModalOpen} onCancel={onCancelModal} footer={null}>
+        <StudentForm
+          callback={(v) => {
+            setIsModalOpen(false);
+            setHasUpdated(v);
+          }}
+        />
+      </Modal>
     </div>
   );
 };
